@@ -4,5 +4,5 @@ module RequestMeter
   # Current version of the RequestMeter gem.
   #
   # @return [String] the gem version
-  VERSION = "0.1.2"
+  VERSION = "0.1.3"
 end

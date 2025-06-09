@@ -5,6 +5,8 @@ RequestMeter is a Rack middleware gem for Rails applications that limits API req
 
 It is ideal for Rails APIs wanting built-in request limits.
 
+For the full documentation check [RubyDocs](https://www.rubydoc.info/gems/request_meter)
+
 ## Installation
 
 Install the gem and add to the application's Gemfile by executing:
