@@ -2,8 +2,18 @@
 
 require "rack/request"
 
+# RequestMeter::Middleware is a Rack middleware for API rate limiting.
+#
+# It checks for a configured API key header and limits requests per key using Redis.
+#
+# @example Basic usage
+#   use RequestMeter::Middleware
+#
+# @api public
+
 module RequestMeter
   class Middleware
+    # @param app [#call] the next middleware or Rack app
     def initialize(app)
       @app = app
       @cache_client = RequestMeter.configuration.cache_client
@@ -13,6 +23,10 @@ module RequestMeter
       raise MissingCacheClientError, "Cache client is required"
     end
 
+    # Processes an incoming request, enforces quota limits, and forwards it
+    #
+    # @param env [Hash] Rack environment
+    # @return [Array] Rack response triplet
     def call(env)
       req = Rack::Request.new(env)
       api_key = req.get_header("HTTP_#{RequestMeter.configuration.api_key_header.upcase.gsub("-", "_")}")
