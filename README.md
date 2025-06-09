@@ -23,13 +23,14 @@ gem install request_meter
 
 Add this line to `config/application.rb`
 
-```
+<pre lang="ruby">
 Rails.application.config.middleware.use RequestMeter::Middleware
-```
+</pre>
 
 Example `RequestMeter` configuration in `config/initializers/request_meter.rb`:
 
-```
+
+<pre lang="ruby">
 RequestMeter.configure do |config|
   config.api_key_header = "X-API-Key"
   config.cache_client = Rails.application.config.redis
@@ -42,7 +43,7 @@ RequestMeter.configure do |config|
     user&.quota_period_seconds
   }
 end
-```
+</pre>
 
 
 - `api_key_header` used to get the API key from the request headers
